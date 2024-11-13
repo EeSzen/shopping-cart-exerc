@@ -79,7 +79,7 @@ const items = [
 
 function App() {
   const [FilteredList, setFilteredList] = useState(items);
-  const [showSaleOnly, setShowSaleOnly] = useState(false);
+  const [showSaleOnly, setShowSaleOnly] = useState(true);
 
   // show it out
   // const allItems = items.map((item) => (<li key={item.id}>{item.name}- ${item.price}</li>))
@@ -102,21 +102,18 @@ function App() {
   return (
     <div className="container">
     {/* Your JSX here */}
-      
+      <h1>Shopping Cart</h1>
       <button onClick={filterItems} className="btn btn-primary">
       {showSaleOnly ? "Show Sale Items Only" : "Show All Items" }
       </button>
-
-    <ol>
+    <div className="card py-4 pe-4 ">
         {FilteredList.map((item) => {
           return(
-            <div className="card py-4 pe-4 ">
-              <li key={item.id} className="d-flex justify-content-space-between">{item.name}- ${item.price}
-                {item.onSale === true ? (<button className="btn btn-sm btn-danger">On Sale!</button>) : null}</li>
-            </div>
+              <div key={item.id} className="d-flex justify-content-space-between p-4">{item.name}  
+                {item.onSale === true ? (<span className="badge bg-danger">On Sale!</span>) : null}</div>
           )
         })}
-    </ol>
+    </div>
     </div>
   );
 }
